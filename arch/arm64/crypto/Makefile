@@ -43,3 +43,6 @@ CFLAGS_crc32-arm64.o	:= -mcpu=generic+crc
 
 $(obj)/aes-glue-%.o: $(src)/aes-glue.c FORCE
 	$(call if_changed_rule,cc_o_c)
+
+obj-$(CONFIG_CRYPTO_AES_ARM64_CE) += aes-ce-cipher.o
+CFLAGS_aes-ce-cipher.o += -march=armv8-a+crypto
