@@ -38,6 +38,9 @@
  *	- LZ4 source repository : https://github.com/lz4/lz4
  */
 
+#define LZ4_MEM_COMPRESS	(16384)
+#define LZ4HC_MEM_COMPRESS	(262144 + (2 * sizeof(unsigned char *)))
+
 #ifndef __LZ4_H__
 #define __LZ4_H__
 
