@@ -872,7 +872,7 @@ static ssize_t disksize_store(struct device *dev,
 	struct zram_meta *meta;
 	struct zram *zram = dev_to_zram(dev);
 	int err;
-
+B
 	disksize = memparse(buf, NULL);
 	if (!disksize)
 		return -EINVAL;
@@ -1281,8 +1281,11 @@ static int create_device(struct zram *zram, int device_id)
 	}
 	strlcpy(zram->compressor, default_compressor, sizeof(zram->compressor));
 	zram->meta = NULL;
-	zram->max_comp_streams = 1;
-	return 0;
+	zram->max_comp_streams = 2;
+
+	pr_info("Added device: %s\n", zram->disk->disk_name);
+
+	return device_id;
 
 out_free_disk:
 	del_gendisk(zram->disk);
