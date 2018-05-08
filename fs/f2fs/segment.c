@@ -1483,6 +1483,10 @@ static int issue_discard_thread(void *data)
 				kthread_should_stop() || freezing(current) ||
 				dcc->discard_wake,
 				msecs_to_jiffies(wait_ms));
+
+		if (dcc->discard_wake)
+			dcc->discard_wake = 0;
+
 		if (try_to_freeze())
 			continue;
 		if (f2fs_readonly(sbi->sb))
@@ -1494,8 +1498,6 @@ static int issue_discard_thread(void *data)
 			continue;
 		}
 
-		if (dcc->discard_wake)
-			dcc->discard_wake = 0;
 
 		if (sbi->gc_thread && sbi->gc_thread->gc_urgent)
 			__init_discard_policy(sbi, &dpolicy, DPOLICY_FORCE, 1);
