@@ -640,11 +640,7 @@ KBUILD_AFLAGS	+= $(call cc-option,-fno-PIE)
 KBUILD_CFLAGS	+= $(call cc-disable-warning,maybe-uninitialized,)
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
-<<<<<<< HEAD
-KBUILD_CFLAGS	+= -Os
-=======
 KBUILD_CFLAGS	+= $(call cc-option,-Oz,-Os) $(call cc-disable-warning,maybe-uninitialized,)
->>>>>>> nathan/msm-3.18
 else
 KBUILD_CFLAGS	+= -O2
 endif
