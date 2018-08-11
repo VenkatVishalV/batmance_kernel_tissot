@@ -6572,9 +6572,11 @@ static void ufshcd_init_icc_levels(struct ufs_hba *hba)
  * will take effect only when its sent to "UFS device" well known logical unit
  * hence we require the scsi_device instance to represent this logical unit in
  * order for the UFS host driver to send the SSU command for power management.
+
  * We also require the scsi_device instance for "RPMB" (Replay Protected Memory
  * Block) LU so user space process can control this LU. User space may also
  * want to have access to BOOT LU.
+
  * This function adds scsi device instances for each of all well known LUs
  * (except "REPORT LUNS" LU).
  *
